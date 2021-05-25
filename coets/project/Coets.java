@@ -7,7 +7,7 @@ public class Coets {
 	String codigo;
 	List<Integer> propulsores = new ArrayList<Integer>();
 	List<Integer> potenciaActual = new ArrayList<Integer>();
-	private Thread thread;
+	private int velocidad;
 	
 	public Coets(String codigo, List<Integer> propulsores, List<Integer> potenciaActual) {
 		
@@ -45,17 +45,30 @@ public class Coets {
 		return "El Cohete: " +codigo+ " tiene " +propulsores+ " propulsores y potencias " +potenciaActual;
 	}
 	
-	public boolean Acelerar(int propulsor) {
-		
-		boolean star = true;
-		
-		if(getPotenciaActual().get(propulsor) != getPropulsores().get(propulsor)) {
-			setPotenciaActual(propulsor, getPotenciaActual().get(propulsor)+1);
-		}else {
-			star=false;
-		}
+	public void setPotencia(int maxPotencia) {
+		velocidad = (int) (10 * Math.sqrt(maxPotencia));
+	}
 	
-		return star;
+	
+	public void Acelerar(int propulsor) {
+		
+		int normalizacion = velocidad/propulsores.size();
+		
+		System.out.println(propulsores.get(propulsor));
+		
+		for(int i=0; i<=normalizacion;i++) {
+				
+			if(propulsores.get(propulsor) == potenciaActual.get(propulsor)) {
+				System.out.println("Cohete "+codigo+" Propulsor "+propulsor+" a tope FALTA DE POTENCIA");
+			}else {
+				
+				setPotenciaActual(propulsor, getPotenciaActual().get(propulsor)+1);
+				System.out.println("Cohete "+codigo+ " - "+propulsor+" Propulsores "+potenciaActual);
+			}
+				
+		}
+		
+		
 	}
 	
 	public boolean Frenar(int propulsor) {

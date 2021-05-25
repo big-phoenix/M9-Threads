@@ -32,6 +32,9 @@ public class DAOPatterCoets {
 			
 		}
 		
+		String potencia = JOptionPane.showInputDialog(null,"Introduce la potencia Total");
+		int pot = Integer.parseInt(potencia);
+		
 	
 		while(true) {
 			
@@ -53,6 +56,8 @@ public class DAOPatterCoets {
 				
 							for(Coets cohetes: cohetesDAO.getAllCoets()) {
 								
+								cohetes.setPotencia(pot);
+								
 								try {
 									Thread.sleep(500);
 									
@@ -71,7 +76,7 @@ public class DAOPatterCoets {
 												System.out.print("Cohete "+cohetes.getCodigo()+ " - "+j+" Propulsores "+cohetes.getPropulsores()+" - ");
 												System.out.println(cohetes.getPotenciaActual());
 												
-												while(cohetes.Acelerar(j) == true) {
+												//while(cohetes.Acelerar(j) == true) {
 													
 													try {
 														Thread.sleep(500);
@@ -81,9 +86,9 @@ public class DAOPatterCoets {
 														System.out.println("Algo falla en la aceleracion");
 													}
 													
-												}
+												//}
 												
-												System.out.println("Cohete "+cohetes.getCodigo()+" Propulsor "+(j+1)+" a tope");
+												
 												
 											}
 											
